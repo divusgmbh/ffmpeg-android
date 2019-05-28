@@ -9,7 +9,7 @@ You can run `./docker-build ; ./docker-build` or, manually:
 
 ```
 mkdir -p out
-docker build -t ffmpeg-android .
+docker build -t ffmpeg-android --build-arg UNAME=$(whoami) --build-arg UID=$(id -u) --build-arg GID=$(id -g) .
 docker run -ti --rm -v `pwd`/out:/out ffmpeg-android
 ```
 
