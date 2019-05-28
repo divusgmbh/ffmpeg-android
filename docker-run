@@ -1,0 +1,36 @@
+#!/bin/bash
+
+function usage() {
+    echo """
+      $0 [--cpus X] <commands>
+    """
+}
+
+CPUS="8"
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]; do
+  key="${1}"
+
+  case $key in
+      -c|--cpus)
+      CPUS="${2}"
+      shift # past argument
+      shift # past value
+      ;;
+      *)    # unknown option
+      POSITIONAL+=("${1}") # save it in an array for later
+      shift # past argument
+      ;;
+  esac
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+if [ $# -lt 1 ]; then
+  usage
+  exit 1
+fi
+
+mkdir -p out
+
+docker run --rm -ti -u $(id -u):$(id -g) -v $(pwd)/out:/out --cpus ${CPUS} $(whoami).ffmpeg.builder $@
