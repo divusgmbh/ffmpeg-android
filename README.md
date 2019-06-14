@@ -5,12 +5,12 @@ Build FFmpeg 4.0 for Android (ARM EABI5 32bit), using NDK r10e.
 
 # Instructions
 
-You can run `./docker-build ; ./docker-build` or, manually:
+You can run `./docker-build ; ./docker-run /ffmpeg/build-ffmpeg.sh` or, manually:
 
 ```
 mkdir -p out
 docker build -t ffmpeg-android --build-arg UNAME=$(whoami) --build-arg UID=$(id -u) --build-arg GID=$(id -g) .
-docker run -ti --rm -v `pwd`/out:/out ffmpeg-android
+docker run -ti --rm -v `pwd`/out:/out ffmpeg-android /ffmpeg/build-ffmpeg.sh
 ```
 
 The output will be placed in the **out** directory.

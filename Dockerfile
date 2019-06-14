@@ -26,7 +26,7 @@ COPY build-ffmpeg.sh ffmpeg-pkg-config /ffmpeg/
 ADD https://dl.google.com/android/repository/android-ndk-r10e-linux-x86_64.zip /ndk/
 WORKDIR /ndk
 RUN unzip android-ndk-r10e-linux-x86_64.zip
-RUN ./android-ndk-r10e/build/tools/make-standalone-toolchain.sh --toolchain=arm-linux-androideabi-4.8 --platform=android-19 --install-dir=toolchain-android-r10e --system=linux-x86_64
+RUN ./android-ndk-r10e/build/tools/make-standalone-toolchain.sh --toolchain=arm-linux-androideabi-4.8 --platform=android-14 --install-dir=toolchain-android-r10e --system=linux-x86_64
 
 ADD https://github.com/FFmpeg/FFmpeg/archive/release/4.0.zip /ffmpeg/
 WORKDIR /ffmpeg
