@@ -2,19 +2,20 @@
 
 set -e
 
+FFMPEG_VERSION=4.0
 ANDROID_TC="/ndk/toolchain-android-r10e"
-OUT_DIR="/out/ffmpeg-4.0-arm"
+OUT_DIR="/out/ffmpeg-${FFMPEG_VERSION}-arm"
 PKG_CONFIG="../ffmpeg-pkg-config"
 export API_LEVEL=14
 
 mkdir -p ${OUT_DIR}
-cd /ffmpeg/FFmpeg-release-4.0
+cd /ffmpeg/FFmpeg-release-${FFMPEG_VERSION}
 
 echo "Configuring ffmpeg..."
 ./configure --target-os=linux \
 	--cross-prefix=${ANDROID_TC}/bin/arm-linux-androideabi- \
 	--arch=arm \
-	--cpu=armv7-a \
+	--cpu=cortex-a8 \
 	--enable-runtime-cpudetect \
 	--sysroot=${ANDROID_TC}/sysroot \
 	--prefix=${OUT_DIR} \
@@ -32,6 +33,6 @@ make install
 
 echo "Creating output archive..."
 cd /out
-tar cvfz ffmpeg-4.0-arm.tar.gz ffmpeg-4.0-arm
+tar cvfz ffmpeg-${FFMPEG_VERSION}-arm.tar.gz ffmpeg-${FFMPEG_VERSION}-arm
 
 echo "Done!"

@@ -31,11 +31,9 @@ RUN ./android-ndk-r10e/build/tools/make-standalone-toolchain.sh --toolchain=arm-
 ADD https://github.com/FFmpeg/FFmpeg/archive/release/4.0.zip /ffmpeg/
 WORKDIR /ffmpeg
 RUN unzip 4.0.zip
-
-RUN chown -R $UNAME.$UNAME /ndk
-RUN chown -R $UNAME.$UNAME /ffmpeg
-RUN chown -R $UNAME.$UNAME /out
+RUN chown -R $UNAME.$UNAME /ndk /ffmpeg /out
 
 USER $UNAME
+
 
 CMD ["/ffmpeg/build-ffmpeg.sh"]
