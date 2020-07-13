@@ -1,3 +1,7 @@
+# NOTICE
+
+Obsolete repository: please use http://vsgit.office.pexta.eu/products/android/android6/3rdparty/ffmpeg
+
 # FFmpeg for Android
 
 Build FFmpeg 4.0 for Android (ARM EABI5 32bit), using NDK r10e.
